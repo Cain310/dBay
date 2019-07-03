@@ -40,7 +40,7 @@ class CreateItem extends Component {
     this.setState({ [name]: val });
   };
 
-  // Function to upload images from client to cloudinary and display on frontend
+  // Function to upload images from client/sell page to cloudinary and display/store on frontend/prismaDB
   uploadFile = async e => {
     console.log("Uploadingggg Fileee");
     // Pulls file out of the form selection
@@ -95,6 +95,7 @@ class CreateItem extends Component {
                   required
                   onChange={this.uploadFile}
                 />
+                {/* Display image preview to user if uploaded */}
                 {this.state.image && (
                   <img
                     width="150"
