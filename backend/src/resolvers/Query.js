@@ -2,7 +2,8 @@ const { forwardTo } = require("prisma-binding");
 
 const Query = {
   items: forwardTo("db"),
-  item: forwardTo("db")
+  item: forwardTo("db"),
+  itemsConnection: forwardTo("db")
 
   // # If query is exactly the same both on prisma
   // and on query no custom logic you can just
