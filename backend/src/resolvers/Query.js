@@ -3,18 +3,20 @@ const { forwardTo } = require("prisma-binding");
 const Query = {
   items: forwardTo("db"),
   item: forwardTo("db"),
-  itemsConnection: forwardTo("db")
-
-  // # If query is exactly the same both on prisma
-  // and on query no custom logic you can just
-  // forward query from yoga to prisma not necessary
-  // to write all of this code.
-
-  // async items(parent, args, ctx, info) {
-  //   console.log("Getting Itemsss!!!");
-  //   const items = await ctx.db.query.items();
-  //   return items;
-  // }
+  itemsConnection: forwardTo("db"),
+  // short hand method syntax in es6 instead of me: function()
+  me(parent, args, ctx, info) {
+    //  check if there is a current userId
+    if (!ctx.request.userId) {
+      return null;
+    }
+    return ctx.db.query.user(
+      {
+        where: { id: ctx.request.userId }
+      },
+      info
+    );
+  }
 };
 
 module.exports = Query;
