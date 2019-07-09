@@ -113,7 +113,9 @@ const Mutations = {
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
-    console.log(res);
+    // should not console log reset tokens even in production as it
+    // may be stored in server logs, treat it as a password.
+    // console.log(res);
     return { message: "Thanks" };
     // 3. Email them that reset token
   },
